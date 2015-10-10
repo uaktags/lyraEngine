@@ -1,0 +1,9 @@
+{% extends 'layout.twig' %}
+{% block heading %}
+	<h1>{{ pageTitle }}</h1>
+{% endblock %}
+{% block content %}
+	{{ parent() }}
+	{{ contentMsg }}
+	{{ widget('login_form') }}
+{% endblock %}

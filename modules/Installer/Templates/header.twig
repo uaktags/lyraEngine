@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="ezRPG Project, the free, open source browser-based game engine!"/>
+    <meta name="keywords" content=""/>
+    {% set path = moduleTemplates %}
+    <link type="text/css" rel="stylesheet" href="{{ path }}css/style.css">
+    <title>lyraEngine Installation</title>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <span id="title"><a href="./">lyraEngine <span>{ALPHA}</span></a></span>
+    </div>
+    <div id="body_wrap">
+
+        {% if warn %}{{ warn }} {% endif %}
+        <div id="body">
+            <div id="sidebar">
+                <ul>
+                    <li>
+                        Requirements
+                    </li>
+                    <li>
+                        License
+                    </li>
+                    <li>
+                        Configuration
+                    </li>
+                    <li>
+                        Admin
+                    </li>
+                </ul>
+            </div>
+            <div id="gamebody">

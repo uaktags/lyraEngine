@@ -1,0 +1,12 @@
+composer.lock
+composer.phar
+log/*.log
+tags
+vendor/*
+.DS_Store
+.idea/
+
+!.gitkeep
+/config/config.php
+/config/settings.php
+/modules/Installer/locked

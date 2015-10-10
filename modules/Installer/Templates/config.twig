@@ -1,0 +1,85 @@
+{% include 'header.twig' %}
+    <form method="post">
+        <table cellspacing="0" border="0" width="100%">
+            <tr>
+                <td width="25%">
+                    Game Name
+                </td>
+                <td>
+                    <input type="text" name="gamename" value="{{ gamename }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Game URL
+                </td>
+                <td>
+                    <input type="text" name="gameurl" value="{{ gameurl }}"/><br/>
+                    NOTE: There should be NO trailing slash.
+                </td>
+            </tr>
+            <tr>
+                <td width="30%">
+                    Database Type
+                </td>
+                <td>
+                    <select name="dbtype">
+                        <option value="mysql" {{ dbtype=='mysql' ? 'selected' }}>MySQL
+                        </option>
+                        <option value="sqlite" {{ dbtype=='sqlite' ? 'selected' }}>SQLite
+                        </option>
+                        <option value="sqlsrv" {{ dbtype=='sqlsrv' ? 'selected' }}>MSSSQL
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Database Host *
+                </td>
+                <td>
+                    <input type="text" name="dbhost" value="{{ dbhost }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Database Name
+                </td>
+                <td>
+                    <input type="text" name="dbname" value="{{ dbname }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Database Username
+                </td>
+                <td>
+                    <input type="text" name="dbuser" value="{{ dbuser }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Database Password
+                </td>
+                <td>
+                    <input type="password" name="dbpass" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Database Table Prefix
+                </td>
+                <td>
+                    <input type="text" name="dbpref" value="{{ dbpref }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Save"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+	<br/>
+	<p>* We recommend using the IPv4 in Windows environments rather than a Hostname. Due to a MySQL bug, a 1+second delay can be experienced as Windows environment Hosts file may have an IPv6 line for your Hostname.</p>
+{% include 'footer.twig' %}

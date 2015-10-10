@@ -1,0 +1,14 @@
+{% block content_right %}
+    <form method="post" action="Login" name="login">
+        <div class="row">
+            <label for="username">Username</label>
+            <input class="u-full-width" type="text" placeholder="Username Or test@mailbox.com" name="username">
+        </div>
+        <div class="row">
+            <label for="password">Password</label>
+            <input class="u-full-width" type="password" placeholder="Password" name="password">
+        </div>
+        <input class="button-primary u-full-width" type="submit" value="Login" name="login">
+    </form>
+					
+{% endblock %}

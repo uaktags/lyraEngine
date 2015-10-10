@@ -1,0 +1,5 @@
+<testsuites>
+	<testsuite name="Lyra">
+		<directory>library/*/tests</directory>
+	</testsuite>
+</testsuites>

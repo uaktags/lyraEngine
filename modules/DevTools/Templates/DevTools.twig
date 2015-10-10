@@ -1,0 +1,40 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+   <div class="row" ><h5>Password Set</h5>
+    <h6>Warning: This will change any user's password you set!</h6>
+<form action="{{ config.site.url }}/DevTools/setpassword" method="POST" name="setPasswordTest">
+    <div class="row">
+        <label for="username">Username</label>
+        <input class="u-full-width" type="text" placeholder="Username Or test@mailbox.com" id="username" name="username">
+    </div>
+    <div class="row">
+        <label for="password">Password</label>
+        <input class="u-full-width" type="password" placeholder="Password" id="password" name="password">
+    </div>
+    <input class="button-primary u-full-width" type="submit" value="Set Password" name="login">
+</form>
+    </div><div class="row">
+    <h5>
+        Rebuild Settings Cache
+    </h5>
+    <h6>Grabs all settings from DB and adds it to the Config/Settings.php cache</h6>
+    <form action="{{ config.site.url }}/DevTools/rebuildSettings" method="POST" name="rebuildSettings">
+        <input type="hidden" value="TRUE" >
+        <input class="button-primary u-full-width" type="submit" value="Rebuild!" name="login" >
+    </form>
+    </div>
+    <div class="row">
+        <h5>ACL Test</h5>
+        <ul>
+            {%  for acl, val in acl_stack %}
+                <li>{{ acl }} : {{ val }}</li>
+            {% endfor %}
+        </ul>
+        {% if acl is defined %}
+            {{ acl }}
+        {% else %}
+            ACL Variable isn't set
+        {% endif %}
+    </div>
+{% endblock %}

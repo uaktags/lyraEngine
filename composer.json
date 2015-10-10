@@ -1,0 +1,21 @@
+{
+  "name": "lyra/lyraEngine",
+  "homepage": "http://lyraengine.com",
+  "repositories": [
+	{
+	  "type": "vcs",
+	  "url": "https://github.com/AliasIO/Swiftlet"
+	}
+  ],
+  "require": {
+	"php": ">=5.4",
+	"twig/twig": "~1.0",
+	"ircmaxell/password-compat": "1.0.4"
+  },
+  "autoload": {
+	"psr-4": {
+	  "Module\\": "modules",
+	  "Lyra\\": "src"
+	}
+  }
+}

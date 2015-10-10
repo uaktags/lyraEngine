@@ -1,0 +1,65 @@
+{% extends 'layout.twig' %}
+{% block heading %}
+    <h1>{{ pageTitle }}</h1>
+    <p>
+        Want to join the fun? Fill out the form below to register!
+    </p>
+{% endblock %}
+{% block content %}
+    <form method="post" action="register">
+        <div class="row">
+            <div class="five columns">
+                <label>Username</label>
+                <input type="text" class="u-full-width" name="username" placeholder="UserName1234" value="{{ username }}" />
+            </div>
+            <div class="one column">&nbsp;</div>
+            <div class="five columns">
+                <label>Email</label>
+                <input type="text" class="u-full-width" name="email" placeholder="test@mailbox.com" value="{{ email }}" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="five columns">
+                <label>Password</label>
+                <input type="password" class="u-full-width" name="password" placeholder="T0pS3cR3t123#@!" value="{{ password }}" />
+            </div>
+            <div class="one column">&nbsp;</div>
+            <div class="five columns">
+                <label>Verify Password</label>
+                <input type="password" class="u-full-width" name="password2" placeholder="T0pS3cR3t123#@!" />
+            </div>
+        </div>
+        {% for hook in registerLayoutHooks %}
+            {% if loop.index is odd %}
+                <div class="row">
+                    <div class="five columns">
+                        {{ hook|raw }}   {{ loop.index }}
+                    </div>
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+            {% endif %}
+            {% if loop.index is even %}
+                    <div class="one column">&nbsp;</div>
+                        <div class="five columns">
+                            {{ hook }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="row">
+            <div class="five columns">
+                <input type="hidden" name="verify" value="0" />
+                <input name="register" type="submit" value="Register" class="button-primary u-full-width" zindex="5" />
+            </div>
+        </div>
+
+        </form>
+    <!--
+        <script src='views/js/modules/register/security.js'></script>
+        <script>
+            $.run('ready', 'security.botCheck');
+        </script>-->
+
+{% endblock %}

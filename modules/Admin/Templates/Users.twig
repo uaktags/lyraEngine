@@ -1,0 +1,67 @@
+{% extends 'layout.twig' %}
+{% block pageHeader %}
+	{% if pageTitle is empty %}
+		{{ parent() }}
+	{% else %}
+		{{ pageTitle }}
+	{% endif %}
+{% endblock %}
+{% block content %}
+     <div class="panel panel-default">
+		<div class="panel-heading">
+			Players
+		</div>
+		<!-- /.panel-heading -->
+		<div class="panel-body">
+			<div class="dataTable_wrapper">
+				<table class="table table-striped table-bordered table-responsive" id="dataTables-example">
+					<thead>
+						<tr>
+							<th>Username</th>
+							<th>Email</th>
+							<th>Joined</th>
+							<th>Last Active</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+                    {% if playerArray is not empty %}
+                        <tbody>
+                            {% for players in playerArray %}
+                                        <tr class="{{ loop.index is odd ? 'odd' : 'even' }}">
+                                            <td>{{ players.username }}</td>
+                                            <td>{{ players.email }}</td>
+                                            <td>{{ players.registered }}</td>
+                                            <td>{{ players.lastActive }}</td>
+                                            <td class="center"><button type="button" class="btn btn-info">Edit</button><button type="button" class="btn btn-default">View</button></td>
+                                        </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% endif %}
+				</table>
+			</div>
+			<!-- /.table-responsive -->
+		</div>
+		<!-- /.panel-body -->
+	</div>
+	<!-- /.panel -->
+{% endblock %}
+
+{% block includeJavascript %}
+    <!-- DataTables JavaScript -->
+    <script src="{{ path }}bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="{{ path }}bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    <script src="{{ path }}bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block includeCSS %}
+    <link href="{{ path }}bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ path }}bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
+{% endblock %}

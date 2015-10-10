@@ -1,0 +1,78 @@
+{% include 'header.twig' %}
+    <style>
+        .good {
+            color: green;
+        }
+
+        .bad {
+            color: red;
+        }
+
+        .warn {
+            color: orange;
+        }
+
+        .box {
+            padding: 3px 2px;
+            border: solid 1px #DDD;
+            border-radius: 2px;
+            display: block;
+        }
+    </style>
+    <table style="width: 100%">
+        <tr>
+            <th colspan="2" align="left">Requirement</th>
+        </tr>
+        {% for title, results in checks %}
+            <tr>
+                <td width="25%">
+                    {{ title }}
+                </td>
+                <td>
+				<span class="{{ results.passed ? 'good' : results.required ? 'bad' : 'warn'  }}">
+					{{ results.passed ? 'Passed' : "Failed" }}
+				</span>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% set warnings = [] %}
+{% set errors =[] %}
+{% for check in checks %}
+    {% if check.passed == false %}
+        {% if check.required == false %}
+            {% set warnings = check.message %}
+        {% else %}
+            {% set errors = check.message %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% if errors|length == 0 %}
+    <br /><br /><div style="text-align:center"><button style="margin:0" onclick="javascript:location ='{{ config.site.url }}/Installer/license'">Continue</button></div>
+{% endif %}
+
+{% if errors|length > 0 or warnings|length > 0 %}
+    <br /><strong>Not all prerequisites have been met, please see advice below on how to solve this issue.</strong>
+    {% if errors|length > 0 %}
+        <p><strong>Errors</strong><br />These are the problems the installer found that needs attention:<br />
+        {% for error in errors %}
+            <span class="bad box">{{ error }}</span>
+        {% endfor %}
+
+        <strong><i>Please rectify these issues before continuing.</i></strong></p>
+    {% endif %}
+
+    {% if warnings|length > 0 %}
+        <p><strong>Warngings</strong><br />These are the problems the installer found that doesn\'t need your immediate attention, but are worth looking into to get all the power of ezRPG:<br />
+        {% for warning in warnings %}
+           <span class="warn box">' . $warning . '</span>
+        {% endfor %}
+        </p>
+    {% endif %}
+
+   <div style="text-align:center"><button style="margin:0" onclick="javascript:location.reload()">Refresh</button></div><br /><br />
+{% endif %}
+
+
+{% include 'footer.twig' %}

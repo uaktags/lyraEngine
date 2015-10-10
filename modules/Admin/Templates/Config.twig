@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+{% block pageHeader %}
+{% if pageTitle is empty %}
+{{ parent() }}
+{% else %}
+{{ pageTitle }}
+{% endif %}
+{% endblock %}
+{% block content %}
+    {% if mainContent is empty %}
+{{ parent() }}
+{% else %}
+   {{ mainContent }}
+{% endif %}
+{% endblock %}

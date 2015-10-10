@@ -1,0 +1,1 @@
+Folder for theme directories that carry JS, CSS, etc

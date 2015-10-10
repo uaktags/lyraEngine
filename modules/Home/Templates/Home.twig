@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %}
+{% block heading %}
+    <h1>{{ pageTitle }}</h1>
+{% endblock %}
+{% block content %}
+    <div class="left">
+        <p>
+            <strong>Name</strong>: {{ player.title }}<br />
+            <strong>Email</strong>: {{ player.email }}<br />
+            <strong>Registered</strong>: {{ player.registered }}<br />
+            <strong>Kills/Deaths</strong>: 0/0<br />
+            <br />
+
+            {% if statPoints is not empty %}
+            You have stat points left over!<br />
+            <a href="{{ site.url }}/StatPoints"><strong>Spend them now!</strong></a>
+            {% else %}
+            You have no extra stat points to spend.
+            {% endif %}
+        </p>
+    </div>
+
+    <?php /*?>
+    <div class="right">
+        <p>
+            <strong>Level</strong>: {{ player.level }}<br />
+            <strong>Gold</strong>: {{ PlayerStats.Gold }}<br />
+            <br />
+            <strong>Strength</strong>: {{ PlayerStats.Strength }}<br />
+            <strong>Endurance</strong>: {{ PlayerStats.Endurance }}<br />
+            <strong>Intelligence</strong>: {{ PlayerStats.Intelligence }}<br />
+            <strong>Dexterity</strong>: {{ PlayerStats.Dexterity }}<br />
+            <strong>Race</strong>: {{ PlayerStats.Race }}<br />
+        </p>
+    </div>
+{% endblock %}

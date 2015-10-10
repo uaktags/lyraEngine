@@ -1,0 +1,39 @@
+{% include 'header.twig' %}
+{% set username = (_POST.username|length > 0 ? _POST.username : '') %}
+{% set email = (_POST.email|length > 0 ? _POST.email : '') %}
+
+    <form method="post">
+        <table cellspacing="0" border="0" width="100%">
+            <tr>
+                <td width="25%">
+                    Admin Username
+                </td>
+                <td>
+                    <input type="text" name="username" value="{{ username }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Admin Password
+                </td>
+                <td>
+                    <input type="password" name="password" value=""/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    Admin E-Mail
+                </td>
+                <td>
+                    <input type="text" name="email" value="{{ email }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Save"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+{% include 'footer.twig' %}

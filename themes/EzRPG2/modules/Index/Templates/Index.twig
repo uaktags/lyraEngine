@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+{% block content %}
+	{{ parent() }}
+{% endblock %}
+{% block content_left %}
+	<h6>This is an index page, with a view custom made for this theme.</h6>
+	{{ parent() }}
+{% endblock %}
+{% block content_right %}
+    {{ widget('login_form') }}
+{% endblock %}

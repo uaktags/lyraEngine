@@ -131,3 +131,15 @@ try {
 
     exit('Exception: ' . $errorCode . '<br><br><small>The issue has been logged. Please contact the website administrator.</small><br>' . $errorMessage);
 }
+try {
+// Load Last 10 Git Logs
+	$git_history = [];
+	$git_logs = [];
+	exec("git log -1 --pretty=format:%h", $git_logs);
+	$hash = explode(' ', $git_logs[0]);
+	$hash = trim(end($hash));
+	echo "lyraEngine is up to date with: <a href='https://github.com/uaktags/lyraEngine/commit/$hash'>$hash</a>";
+} catch(\Exception $e) {
+	file_put_contents(__DIR__ . '/log/exceptions.log', "\n" . "GIT Version was attempted, but not installed with GIT" . "\n" . getExceptionTraceAsString($e) . "\n",
+		FILE_APPEND);
+}

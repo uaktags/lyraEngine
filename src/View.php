@@ -53,8 +53,6 @@ class View extends Common{
 		//Create widget registry instance, who contains your widget
         $this->widgetRegistry = new WidgetRegistry();
 		$this->twig = new \Twig_Environment($this->loader, array('debug'=>true));
-		// set the optimizer-level
-        $this->optimizer();
 		$this->twig->addExtension(new \Twig_Extension_Debug());
 		$this->getWidgets();
         // clear twig-cache
@@ -162,39 +160,6 @@ class View extends Common{
         }
     }
 
-    /**
-     * optimize twig-output
-     *
-     * OPTIMIZE_ALL (-1) | OPTIMIZE_NONE (0) | OPTIMIZE_FOR (2) | OPTIMIZE_RAW_FILTER (4) | OPTIMIZE_VAR_ACCESS (8)
-     *
-     */
-    private function optimizer()
-    {
-        $optimizeOption = -1;
-
-        switch ($optimizeOption) {
-            case -1:
-                $nodeVisitorOptimizer = Twig_NodeVisitor_Optimizer::OPTIMIZE_ALL;
-                break;
-            case 0:
-                $nodeVisitorOptimizer = Twig_NodeVisitor_Optimizer::OPTIMIZE_NONE;
-                break;
-            case 2:
-                $nodeVisitorOptimizer = Twig_NodeVisitor_Optimizer::OPTIMIZE_FOR;
-                break;
-            case 4:
-                $nodeVisitorOptimizer = Twig_NodeVisitor_Optimizer::OPTIMIZE_RAW_FILTER;
-                break;
-            case 8:
-                $nodeVisitorOptimizer = Twig_NodeVisitor_Optimizer::OPTIMIZE_VAR_ACCESS;
-                break;
-            default:
-                $nodeVisitorOptimizer = Twig_NodeVisitor_Optimizer::OPTIMIZE_ALL;
-                break;
-        }
-        $optimizer = new Twig_Extension_Optimizer($nodeVisitorOptimizer);
-        $this->twig->addExtension($optimizer);
-    }
     /**
      * clear TwigWrapper-Cache && exit()
      */

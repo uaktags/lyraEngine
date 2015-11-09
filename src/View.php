@@ -52,10 +52,10 @@ class View extends Common{
         $this->loadModuleTemplates();
 		//Create widget registry instance, who contains your widget
         $this->widgetRegistry = new WidgetRegistry();
-		$this->twig = new \Twig_Environment($this->loader);
+		$this->twig = new \Twig_Environment($this->loader, array('debug'=>true));
 		// set the optimizer-level
         $this->optimizer();
-		//$this->twig->addExtension(new \Twig_Extension_Debug());
+		$this->twig->addExtension(new \Twig_Extension_Debug());
 		$this->getWidgets();
         // clear twig-cache
         $this->clearTwigCache();

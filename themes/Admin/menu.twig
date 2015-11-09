@@ -1,4 +1,5 @@
 {% macro build_menu(parent, menuobj, location, variables) %}
+    {% import _self as menusys %}
 	{% if menuobj %}
 			{% for locations in menuobj %}
 				{% if locations[location] is not empty %}
@@ -12,7 +13,7 @@
 												<span class="fa arrow"></span>
 										</a>
 													<ul class="nav nav-second-level">
-														{{_self.build_menu(menu.menu_id, menuobj, location, variables)}}
+														{{menusys.build_menu(menu.menu_id, menuobj, location, variables)}}
 													</ul>
 											{%else%} 
 										</a>

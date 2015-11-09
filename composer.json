@@ -9,7 +9,7 @@
   ],
   "require": {
 	"php": ">=5.4",
-	"twig/twig": "~1.0",
+	"twig/twig": "1.23",
 	"ircmaxell/password-compat": "1.0.4"
   },
   "autoload": {

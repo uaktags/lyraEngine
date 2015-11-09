@@ -1,5 +1,6 @@
 {% macro build_menu(parent, menuobj, location, variables) %}
-	{% if menuobj %}
+    {% import _self as menusys %}
+    {% if menuobj %}
 			{% for locations in menuobj %}
 				{% if locations[location] is not empty %}
 					{% for menugroup in locations %}
@@ -8,16 +9,16 @@
 								{% if menu.menu_parent == parent %}
 									{% if menu.menu_loginCond == 0 %}
 										<li><a href="{{ menu.menu_link}}">{{menu.menu_title}}</a>
-												{{current.build_menu(menu.menu_id, menuobj)}}
+												{{menusys.build_menu(menu.menu_id, menuobj)}}
 										</li>
 									{% elseif menu.menu_loginCond == 1 %}
 										{% if variables.loggedIn == true %}
-											{{ current.check_role(menu, menuobj, variables.playerRole) }}
+											{{ menusys.check_role(menu, menuobj, variables.playerRole) }}
 										{% endif %}
 									{% else %}
 										{% if variables.loggedIn == false %}
 											<li><a href="{{ menu.menu_link}}">{{menu.menu_title}}</a>
-												{{current.build_menu(menu.menu_id, menuobj)}}
+												{{menusys.build_menu(menu.menu_id, menuobj)}}
 											</li>
 										{% endif %}
 									{% endif %}

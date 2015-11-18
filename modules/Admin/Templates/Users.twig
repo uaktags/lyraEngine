@@ -9,7 +9,7 @@
 {% block content %}
      <div class="panel panel-default">
 		<div class="panel-heading">
-			Players
+			<b>Players</b> <a href="{{ _context.adminURL }}/Admin/Users/New"><button type="button" class="btn btn-info">Add New</button></a>
 		</div>
 		<!-- /.panel-heading -->
 		<div class="panel-body">
@@ -32,7 +32,7 @@
                                             <td>{{ players.email }}</td>
                                             <td>{{ players.registered }}</td>
                                             <td>{{ players.lastActive }}</td>
-                                            <td class="center"><button type="button" class="btn btn-info">Edit</button><button type="button" class="btn btn-default">View</button></td>
+                                            <td class="center"><a href="{{ _context.adminURL }}/Admin/Users/Edit/{{ players.player_id }}"><button type="button" class="btn btn-info">Edit</button></a> | <a href="{{ _context.adminURL }}/Admin/Users/View  /{{ players.player_id }}"><button type="button" class="btn btn-default">View</button></a></td>
                                         </tr>
                             {% endfor %}
                         </tbody>

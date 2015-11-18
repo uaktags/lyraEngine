@@ -152,7 +152,7 @@ class App extends Common implements Interfaces\App
             }
             $routeMatch['params'] = $params;
         }
-
+        //die(var_dump($routeMatch));
         // Authorization of routes through the AC
         if ($this->container['config']['security']['acl']['use']) {
             if (isset($routeMatch['access']['permission']) && $routeMatch['access']['permission'] != NULL) {
@@ -170,13 +170,13 @@ class App extends Common implements Interfaces\App
                 }
             }
         }
-
+        //die(var_dump($routeMatch));
         return $this->dispatch($routeMatch);
     }
 
     public function dispatch(array $routeMatch)
     {
-        $controllerClass = '\\Module\\' . $this->module . '\Controllers\Index';
+        $controllerClass = '\\Module\\' . $this->module . '\\Controllers\\Index';
         $this->module = (!empty($routeMatch['base']) ? str_replace('/', '\\', ucwords($routeMatch['base'])) . '\\' : '') . ucwords($routeMatch['module']);
         $this->action = (!empty($routeMatch['action'])?$routeMatch['action']:'index');
         $this->params = $routeMatch['params'];
@@ -184,7 +184,6 @@ class App extends Common implements Interfaces\App
         $args = $routeMatch['params'];
         $this->config = $this->getConfig();
         $this->initTwig();
-
         //$args = $requestUri ? explode('/', $requestUri) : array();
         $params = $args;
         if ( $args )
@@ -200,8 +199,8 @@ class App extends Common implements Interfaces\App
                 $action = str_replace('-', '', array_shift($args));
             }
             if ( is_file($this->modulePath . str_replace('\\', '/', $controllerClass) . '.php') ) {
-                $params[0] = null;
-                $controllerClass = '\\Module\\' . $this->module . '\Controllers\Index';
+                $params[0] = $this->action;
+                $controllerClass = '\\Module\\' . $this->module . '\\Controllers\\Index';
 
                 // Instantiate the controller
                 $controller = new $controllerClass();
@@ -230,15 +229,16 @@ class App extends Common implements Interfaces\App
                 $controllerClass = '\\Module\\Error404\\Controllers\\Index';
                 $controller = new $controllerClass();
             }
-        } elseif(class_exists('\\Module\\' . $this->module . '\Controllers\Index')) {
-            $controllerClass = '\\Module\\' . $this->module . '\Controllers\Index';
+        } elseif(class_exists('\\Module\\' . $this->module . '\\Controllers\\Index')) {
+           // die('yes');
+            $controllerClass = '\\Module\\' . $this->module . '\\Controllers\\Index';
             $controller = new $controllerClass();
         } else {
-            $controllerClass = '\\Module\\Error404\\Controllers\\Index';
+           //die('no '. '\\Module\\' . $this->module . '\\Controllers\\Index');
+            $controllerClass = '\\Module\\'. $this->module.'\\Controllers\\Index';
             $controller = new $controllerClass();
             $this->action = 'Index';
         }
-
         $actionExists = false;
         if (method_exists($controller, $this->action)) {
             $method = new \ReflectionMethod($controller, $this->action);
@@ -256,10 +256,12 @@ class App extends Common implements Interfaces\App
             $this->registerHook('actionBefore');
 
         if ($actionExists) {
-            $params[1] = null;
+            $params[1] = (isset($action)?$action:null);
         } else {
             $this->action = 'Index';
         }
+
+        //die(var_dump($params));
 
         $controller
             ->setApp($this)

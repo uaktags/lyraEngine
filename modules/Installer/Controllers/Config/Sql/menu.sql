@@ -19,10 +19,10 @@ INSERT INTO `<pre>menu` (`menu_id`, `menu_title`, `menu_link`, `menu_loginCond`,
 (5, 'Logout', 'Login/logout', 1, 0),
 (6, 'Index', 'Index', 2, 0),
 (7, 'Administration', '#', 0, 0),
-(8, 'Appearance', 'appearance', 0, 0),
-(9, 'Configuration', 'confg', 0, 0),
-(10, 'Players', 'players', 0, 0),
-(11, 'Modules', 'modules', 0, 0);
+(8, 'Appearance', 'Admin/Appearance', 0, 0),
+(9, 'Configuration', 'Admin/Confg', 0, 0),
+(10, 'Players', 'Admin/Users', 0, 0),
+(11, 'Modules', 'Admin/Modules', 0, 0);
 
 -- --------------------------------------------------------
 

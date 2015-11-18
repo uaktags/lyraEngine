@@ -137,7 +137,7 @@ try {
 	$git_logs = [];
 	exec("git log -1 --pretty=format:%h", $git_logs);
     exec("git add .");
-	exec("git log --shortstat --oneline  HEAD HEAD^", $git_diff);
+	exec("git log --shortstat --oneline  origin/master HEAD^", $git_diff);
 	$hash = explode(' ', $git_logs[0]);
 	$hash = trim(end($hash));
 	echo "lyraEngine is up to date with: <a href='https://github.com/uaktags/lyraEngine/commit/$hash'>$hash</a>";

@@ -133,12 +133,17 @@ try {
 }
 try {
 // Load Last 10 Git Logs
-	$git_history = [];
+	$git_diff = [];
 	$git_logs = [];
 	exec("git log -1 --pretty=format:%h", $git_logs);
+    exec("git add .");
+	exec("git log --shortstat --oneline  HEAD HEAD^", $git_diff);
 	$hash = explode(' ', $git_logs[0]);
 	$hash = trim(end($hash));
 	echo "lyraEngine is up to date with: <a href='https://github.com/uaktags/lyraEngine/commit/$hash'>$hash</a>";
+	echo "<pre>";
+    print_r($git_diff);
+    echo "</pre>";
 } catch(\Exception $e) {
 	file_put_contents(__DIR__ . '/log/exceptions.log', "\n" . "GIT Version was attempted, but not installed with GIT" . "\n" . getExceptionTraceAsString($e) . "\n",
 		FILE_APPEND);

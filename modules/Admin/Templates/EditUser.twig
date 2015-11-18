@@ -1,0 +1,56 @@
+{% extends 'layout.twig' %}
+{% block pageHeader %}
+	{% if pageTitle is empty %}
+		{{ parent() }}
+	{% else %}
+		{{ pageTitle }}
+	{% endif %}
+{% endblock %}
+{% block content %}
+     <div class="panel panel-default">
+		<div class="panel-heading">
+			Edit Player
+		</div>
+    <!-- /.panel-heading -->
+		<div class="panel-body">
+      <form method="post" action="register">
+        <table width="80%" align=center>
+            <tr>
+                <td valign=top>
+                    <label>Username</label>
+                    <input type="text" size="40" name="username" value="{{ username }}" />
+                    <label>Email</label>
+                    <input type="text" size="40" name="email" value="{{ email }}" />
+                </td>
+                <td valign=top>
+                    <label>Password</label>
+                    <input type="password" size="40" name="password"  value="{{ password }}" />
+
+                    <label>Verify Password</label>
+                    <input type="password" size="40" name="password2" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2 align="center">
+                    <input type="hidden" name="verify" value="0" />
+                    <br />
+                    <input name="register" type="submit" value="Register" class="button" zindex="5" />
+                </td>
+            </tr>
+
+        </table>
+      </form>
+   
+    </div>
+		<!-- /.panel-body -->
+	</div>
+	<!-- /.panel -->
+{% endblock %}
+
+{% block includeJavascript %}
+
+{% endblock %}
+
+{% block includeCSS %}
+
+{% endblock %}
